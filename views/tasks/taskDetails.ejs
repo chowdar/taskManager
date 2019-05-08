@@ -1,0 +1,12 @@
+<% include ../shared/header%>
+
+<div class="card" style="width: 40rem;">
+  <img class="card-img-top" src=<%=taskDet.resourceURL%> alt="Card image cap" style="height:250px">
+  <div class="card-body">
+    <h5 class="card-title"><%=taskDet.title%></h5>
+    <p class="card-text"><%=taskDet.description%></p>
+    <button  class="btn btn-primary"><%=taskDet.date%></button>
+  </div>
+</div>
+
+<% include ../shared/footer%>

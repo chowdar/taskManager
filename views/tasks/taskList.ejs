@@ -1,9 +1,16 @@
 <% include ../shared/header%>
 <div class='row'>
-    <ul class='form-group'>
-        <li class='form-group-list'>List 1</li>
-        <li class='form-group-list'>List 2</li>    
-    </ul>
+    <div class='col-lg-6'>
+        <ul class="list-group">
+            <% tasks.map( task => {%>
+            <li class="list-group-item">
+                <%=task.title%>
+                <a class='btn btn-primary float-right' href="/tasks/<%=task.id%>/details">Details</a>
+                <a class='btn btn-danger float-right' style="margin-right: 10px">Delete</a>
+            </li>
+            <%})%>
+        </ul>
+    </div>    
 </div>
 
 <% include ../shared/footer%>
