@@ -15,7 +15,6 @@ exports.details = (req,res) => {
             taskDet = task
         }
     })
-    console.log(taskDet.resourceURL)
     res.render('tasks/taskDetails',{
         title: 'Task Manager',
         taskDet
