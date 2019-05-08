@@ -1,17 +1,15 @@
 let express = require('express');
+let tasksRoutes = require('./routes/taskRoutes')
 
-let tasks = require('./Models/taskLists')
 let app = express();
+app.set('view engine', 'ejs')
+
+
 
 app.get('/', (req,res) => {
-    console.log(tasks)
     res.send("homepage")
 })
 
-app.get('/tasks', (req,res) => {
-    
-    res.json(tasks)
-})
-
+app.use('/', tasksRoutes)
 
 module.exports = app;
