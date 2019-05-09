@@ -6,7 +6,7 @@
             <li class="list-group-item">
                 <%=task.title%>
                 <a class='btn btn-primary float-right' href="/tasks/<%=task.id%>/details">Details</a>
-                <a class='btn btn-danger float-right' style="margin-right: 10px">Delete</a>
+                <a class='btn btn-danger float-right' style="margin-right: 10px" href="/tasks/<%=task.id%>/delete">Delete</a>
             </li>
             <%})%>
         </ul>

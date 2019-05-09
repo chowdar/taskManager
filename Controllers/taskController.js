@@ -20,3 +20,15 @@ exports.details = (req,res) => {
         taskDet
     })
 }
+
+exports.delete = (req, res) =>{
+    let id = Number(req.params.id);
+    tasks.map( (task, i) => {
+        if(task.id === id ){
+            tasks.splice(i, 1);
+        }
+    })
+    console.log(id)
+    console.log(tasks)
+    res.redirect('/tasks/taskList')
+}
