@@ -35,14 +35,34 @@ exports.delete = (req, res) =>{
 
 exports.addTask = (req,res) => {
     let { title, description, resourceURL} = req.body
-    let task = new CreateTask(tasks.length+1, title, description, resourceURL);
-    tasks.push(task)
-    console.log(tasks);
-    res.redirect('/tasks/taskList')
+    let valid = true;
+    let errors = {};
+
+    if( title === ''){
+        valid = false;
+        errors.title = `title can't be blank`;
+    }if( description === ''){
+        valid = false;
+        errors.description = `description can't be blank`;
+    }
+    if(valid){
+        req.session.errors = {}
+        let task = new CreateTask(tasks.length+1, title, description, resourceURL);
+        tasks.push(task)
+        res.redirect('/tasks/taskList')
+    }else{
+        req.session.errors = errors
+        console.log(req.session.errors)
+        res.redirect('/tasks/addTaskForm')
+    }
+    
 }
 
 exports.addTaskForm = (req, res) => {
+    let errors = req.session.errors ? req.session.errors : {};
+    console.log(errors)
     res.render('tasks/addTaskForm',{
-        title: 'Task Manager'
+        title: 'Task Manager',
+        errors
     })
 }
