@@ -1,16 +1,21 @@
 let tasks = require('../Models/taskLists');
-let CreateTask = require('../helpers/Task')
+let CreateTask = require('../helpers/Task');
+
 
 
 exports.tasklist = (req, res) => {
+    const user = req.session.user;
+
     res.render('tasks/taskList',{
         title: 'Task Manager',
-        tasks
+        tasks,
+        user
     })
 } 
 
 exports.details = (req,res) => {
     let id = Number(req.params.id);
+    const user = req.session.user;
     let taskDet;
     tasks.map( task =>{
         if(task.id === id){
@@ -19,7 +24,8 @@ exports.details = (req,res) => {
     })
     res.render('tasks/taskDetails',{
         title: 'Task Manager',
-        taskDet
+        taskDet,
+        user
     })   
 }
 
@@ -60,9 +66,10 @@ exports.addTask = (req,res) => {
 
 exports.addTaskForm = (req, res) => {
     let errors = req.session.errors ? req.session.errors : {};
-    console.log(errors)
+    const user = req.session.user;
     res.render('tasks/addTaskForm',{
         title: 'Task Manager',
-        errors
+        errors,
+        user
     })
 }

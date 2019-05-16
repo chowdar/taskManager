@@ -2,7 +2,9 @@ let express = require('express');
 let bodyParser = require('body-parser');
 let session = require('express-session')
 
-let tasksRoutes = require('./routes/taskRoutes')
+let tasksRoutes = require('./routes/taskRoutes');
+let authRoutes = require('./routes/authRoutes');
+let authMiddleware = require('./helpers/authMiddleware');
 
 let app = express();
 
@@ -21,9 +23,11 @@ app.set('view engine', 'ejs');
 
 
 app.get('/', (req,res) => {
-    res.redirect('/tasks/taskList')
+    res.redirect('/login')
 })
 
-app.use('/', tasksRoutes)
+app.use('/', authRoutes);
+app.use('/', [authMiddleware, tasksRoutes]);
+
 
 module.exports = app;
