@@ -1,4 +1,6 @@
-let tasks = require('../Models/taskLists')
+let tasks = require('../Models/taskLists');
+let CreateTask = require('../helpers/Task')
+
 
 exports.tasklist = (req, res) => {
     res.render('tasks/taskList',{
@@ -18,7 +20,7 @@ exports.details = (req,res) => {
     res.render('tasks/taskDetails',{
         title: 'Task Manager',
         taskDet
-    })
+    })   
 }
 
 exports.delete = (req, res) =>{
@@ -28,7 +30,19 @@ exports.delete = (req, res) =>{
             tasks.splice(i, 1);
         }
     })
-    console.log(id)
-    console.log(tasks)
     res.redirect('/tasks/taskList')
+}
+
+exports.addTask = (req,res) => {
+    let { title, description, resourceURL} = req.body
+    let task = new CreateTask(tasks.length+1, title, description, resourceURL);
+    tasks.push(task)
+    console.log(tasks);
+    res.redirect('/tasks/taskList')
+}
+
+exports.addTaskForm = (req, res) => {
+    res.render('tasks/addTaskForm',{
+        title: 'Task Manager'
+    })
 }

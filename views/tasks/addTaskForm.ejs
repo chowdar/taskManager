@@ -1,0 +1,20 @@
+<% include ../shared/header%>
+<div class='col-lg-6'>
+  <form action='/tasks/addTask' method='post'>
+    <div class="form-group">
+      <label for="title">Task Title</label>
+      <input type="text" class="form-control" name='title' id="title"  placeholder="Task Title" />
+    </div>
+    <div class="form-group">
+      <label for="description">Task Description</label>
+      <input type="text" class="form-control" name="description" id="description"  placeholder="TaskDescription">
+    </div>
+    <div class="form-group">
+      <label for="resourceURL">Resource URL</label>
+      <input type="text" class="form-control" name='resourceURL' id="resourceURL"  placeholder="Resource URL">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>
+<% include ../shared/footer%>
